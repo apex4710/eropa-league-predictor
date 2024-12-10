@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UEFA Europa League Predictor</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -17,7 +16,7 @@
 <style>
     html,
     body {
-        font-family: 'Cinzel', serif;
+        font-family: 'Oswald', sans-serif;
         background-image: url('images/uel_bg.png');
         background-color: #0f0f0f;
         /* Black background for Europa League */
@@ -131,27 +130,44 @@
         margin: 0 auto;
         border-collapse: collapse;
         margin-bottom: 20px;
-        background-color: rgba(211, 99, 0, 0.2);
+        background-color: rgba(0,
+                0,
+                0,
+                0.2);
         /* Darker transparency for the table */
         border-radius: 15px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.008);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        /* Adjust shadow for more depth */
         overflow: hidden;
+        /* Ensure rounded corners are applied correctly */
     }
 
     th,
     td {
         padding: 15px;
         text-align: center;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0,
+                0,
+                0,
+                0.2);
         /* Darker transparency for the table rows */
         color: #e0e0e0;
         border-bottom: 1px solid rgba(224, 224, 224, 0.3);
+        /* Light border */
     }
 
     th {
-        background-color: rgba(0, 0, 0, 0.2);
-        color: #f5a623;
-        /* Orange header text */
+        background-color: rgba(0,
+                0,
+                0,
+                0.2);
+        /* Matching transparency for the header */
+        color: #e0e0e0;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+        /* Remove border from last row */
     }
 
     #pointsTable tr.top8 td:first-child {
@@ -200,6 +216,42 @@
         /* Orange red */
     }
 
+    /* Existing table styles */
+    #pointsTable th,
+    #pointsTable td {
+        padding: 15px;
+        text-align: center;
+        background-color: rgba(0,
+                0,
+                0,
+                0.2);
+        /* Darker transparency for the table rows */
+        color: #e0e0e0;
+        border-bottom: 1px solid rgba(224, 224, 224, 0.3);
+        /* Light border */
+    }
+
+    #pointsTable th {
+        background-color: rgba(0,
+                0,
+                0,
+                0.2);
+        /* Matching transparency for the header */
+        color: #e0e0e0;
+    }
+
+    #pointsTable tbody tr:last-child td {
+        border-bottom: none;
+        /* Remove border from last row */
+    }
+
+    .disclaimer {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #e0e0e0;
+        text-align: center;
+    }
+
     #resetButton,
     #exportCSVButton,
     #exportPDFButton {
@@ -241,22 +293,46 @@
         /* Darker green on hover */
     }
 
+    .table {
+        border-radius: 15px;
+        background-color: rgba(0,
+                0,
+                0,
+                0.2);
+        /* Darker transparency for the table */
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        /* Adjust shadow for more depth */
+        overflow: hidden;
+        /* Ensure rounded corners are applied correctly */
+    }
+
     thead th {
-        background-color: rgba(0, 0, 0, 0.3);
-        color: #f5a623;
-        /* Orange header text */
+        background-color: rgba(0,
+                0,
+                0,
+                0.3);
+        /* Slightly darker transparency for the header */
+        color: #e0e0e0;
         padding: 15px;
+        /* Add padding to header cells */
     }
 
     tbody td {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0,
+                0,
+                0,
+                0.4);
+        /* Darker transparency for the table rows */
         color: #e0e0e0;
         border-bottom: 1px solid rgba(224, 224, 224, 0.3);
+        /* Light border */
         padding: 15px;
+        /* Add padding to table cells */
     }
 
     tbody tr:last-child td {
         border-bottom: none;
+        /* Remove border from last row */
     }
 
     .logo-container {
@@ -264,6 +340,7 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 20px;
+        /* Space between the logo and the header */
     }
 
     .uel-logo {
@@ -272,15 +349,18 @@
         height: auto;
     }
 
+    /* Media query for small screens */
     @media (max-width: 600px) {
         .score-inputs {
             flex-direction: column;
             gap: 10px;
+            /* Add gap between the inputs */
         }
 
         .score-inputs input {
             width: 60px;
             margin: 5px 0;
+            /* Add vertical margin to the inputs */
         }
     }
 </style>
