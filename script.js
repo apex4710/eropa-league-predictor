@@ -568,10 +568,17 @@ document.addEventListener("DOMContentLoaded", function() {
             y += 10;
     
             // Table Header for Fixtures
+            const columnWidths = {
+                date: 30,
+                teams: 120,
+                score: 40,
+            };
+            const startX = 10;
+    
             doc.setFontSize(12);
-            doc.text("Date", 10, y);
-            doc.text("Teams", 50, y);
-            doc.text("Score", 150, y);
+            doc.text("Date", startX, y);
+            doc.text("Teams", startX + columnWidths.date + 5, y);
+            doc.text("Score", startX + columnWidths.date + columnWidths.teams + columnWidths.score - 5, y, null, null, "right");
             y += 10;
     
             matchdays[matchday].forEach((fixture, index) => {
@@ -584,9 +591,22 @@ document.addEventListener("DOMContentLoaded", function() {
     
                 // Fixture Details
                 doc.setFontSize(12);
-                doc.text(date, 10, y);
-                doc.text(`${team1} vs ${team2}`, 50, y);
-                doc.text(`${score1 !== null ? score1 : '-'} - ${score2 !== null ? score2 : '-'}`, 150, y, null, null, "right");
+    
+                // Date
+                doc.text(date, startX, y);
+    
+                // Teams
+                const teamText = `${team1} vs ${team2}`;
+                const maxTeamTextLength = 40; // Adjust if needed for longer names
+                const truncatedTeamText = teamText.length > maxTeamTextLength
+                    ? `${teamText.substring(0, maxTeamTextLength)}...`
+                    : teamText;
+                doc.text(truncatedTeamText, startX + columnWidths.date + 5, y);
+    
+                // Score
+                const scoreText = `${score1 !== null ? score1 : '-'} - ${score2 !== null ? score2 : '-'}`;
+                doc.text(scoreText, startX + columnWidths.date + columnWidths.teams + columnWidths.score - 5, y, null, null, "right");
+    
                 y += 10;
     
                 // Pagination for fixtures
@@ -624,7 +644,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         fillColor: indicatorColor,
                     },
                 },
-                ...rowData,
+                rank, // Replace "Position" with "No."
+                ...rowData.slice(1),
             ];
         });
     
@@ -632,7 +653,7 @@ document.addEventListener("DOMContentLoaded", function() {
         doc.autoTable({
             startY: y,
             head: [
-                ["", "Position", "Team", "Played", "Won", "Drawn", "Lost", "Goals For", "Goals Against", "Goal Difference", "Points"],
+                ["", "No.", "Team", "Played", "Won", "Drawn", "Lost", "Goals For", "Goals Against", "Goal Difference", "Points"],
             ],
             body: tableBody,
             bodyStyles: {
@@ -648,7 +669,7 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             columnStyles: {
                 0: { cellWidth: 5 }, // Indicator column
-                1: { cellWidth: 15 }, // Position column
+                1: { cellWidth: 10 }, // No. column (was Position)
             },
         });
     
@@ -657,6 +678,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     document.getElementById("exportPDFButton").addEventListener("click", exportToPDF);
+    
     
     
 
