@@ -1,6 +1,6 @@
 # UEFA Europa League Predictor
 
-**<a href="" target="_blank">Access the site here</a>**
+**<a href="https://apex4710.github.io/europa-league-predictor/" target="_blank">Access the site here</a>**
 
 Welcome to the UEFA Europa League Predictor! This web application allows you to enter match scores and view the updated points table based on the Group Stage Tiebreakers.
 
@@ -50,7 +50,7 @@ The points table is sorted using the following Group Stage Tiebreakers:
 
 ## Disclaimer
 
-The results are updated through the current league stage matchday.
+The results are updated through the current league stage matchday 5.
 
 ## Credits
 
