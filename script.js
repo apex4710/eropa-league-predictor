@@ -550,32 +550,46 @@ document.addEventListener("DOMContentLoaded", function() {
     function exportToPDF() {
         const doc = new jsPDF();
     
-        // Add Title
+        // Title
         let y = 10;
         doc.setFontSize(18);
         doc.text("UEFA Europa League Predictor", 105, y, null, null, "center");
         y += 10;
     
-        // Add Subtitle for Fixtures
+        // Fixtures Header
         doc.setFontSize(14);
         doc.text("Fixtures", 105, y, null, null, "center");
         y += 10;
     
-        // Fixtures Section
+        // Fixtures Section with Table Layout
         Object.keys(matchdays).forEach((matchday) => {
             doc.setFontSize(14);
             doc.text(`Matchday ${matchday}`, 10, y);
             y += 10;
     
-            matchdays[matchday].forEach((fixture) => {
+            // Table Header for Fixtures
+            doc.setFontSize(12);
+            doc.text("Date", 10, y);
+            doc.text("Teams", 50, y);
+            doc.text("Score", 150, y);
+            y += 10;
+    
+            matchdays[matchday].forEach((fixture, index) => {
                 const { team1, team2, score1, score2, date } = fixture;
     
+                // Alternating row background colors
+                const bgColor = index % 2 === 0 ? [245, 245, 245] : [255, 255, 255];
+                doc.setFillColor(...bgColor);
+                doc.rect(10, y - 7, 190, 8, "F");
+    
+                // Fixture Details
                 doc.setFontSize(12);
-                const fixtureText = `${date}: ${team1} ${score1 !== null ? score1 : 'null'} - ${score2 !== null ? score2 : 'null'} ${team2}`;
-                doc.text(fixtureText, 10, y);
+                doc.text(date, 10, y);
+                doc.text(`${team1} vs ${team2}`, 50, y);
+                doc.text(`${score1 !== null ? score1 : '-'} - ${score2 !== null ? score2 : '-'}`, 150, y, null, null, "right");
                 y += 10;
     
-                // Add page if necessary
+                // Pagination for fixtures
                 if (y > 270) {
                     doc.addPage();
                     y = 10;
@@ -588,33 +602,42 @@ document.addEventListener("DOMContentLoaded", function() {
             y += 10;
         });
     
-        // Points Table Section
+        // Points Table Header
         doc.setFontSize(14);
         doc.text("Points Table", 105, y, null, null, "center");
         y += 10;
     
-        const tableData = Array.from(document.querySelectorAll("#pointsTable tbody tr")).map(
-            (row, rowIndex) => {
-                const rowData = Array.from(row.cells).map((cell) => ({
-                    content: cell.innerText,
-                    styles: { halign: "center" },
-                }));
+        // Points Table Body
+        const tableBody = Array.from(document.querySelectorAll("#pointsTable tbody tr")).map((row, rowIndex) => {
+            const rowData = Array.from(row.cells).map(cell => cell.innerText);
+            const rank = rowData[0];
+            const indicatorColor = rowIndex < 8 ? [0, 255, 0] : rowIndex < 24 ? [255, 215, 0] : [255, 0, 0];
     
-                // Add row color styles
-                return {
-                    rowData,
+            // Add a colored indicator next to the rank
+            return [
+                {
+                    content: "",
                     styles: {
-                        fillColor: rowIndex < 8 ? [0, 255, 0] : rowIndex < 24 ? [255, 215, 0] : [255, 0, 0],
+                        cellWidth: 5,
+                        halign: "center",
+                        valign: "middle",
+                        fillColor: indicatorColor,
                     },
-                };
-            }
-        );
+                },
+                ...rowData,
+            ];
+        });
     
         // Render Points Table
         doc.autoTable({
             startY: y,
-            head: [["Position", "Team", "Played", "Won", "Drawn", "Lost", "GF", "GA", "GD", "Points"]],
-            body: tableData.map((row) => row.rowData),
+            head: [
+                ["", "Position", "Team", "Played", "Won", "Drawn", "Lost", "Goals For", "Goals Against", "Goal Difference", "Points"],
+            ],
+            body: tableBody,
+            bodyStyles: {
+                halign: "center",
+            },
             styles: {
                 lineWidth: 0.1,
                 lineColor: [200, 200, 200],
@@ -623,7 +646,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 fillColor: [45, 45, 45],
                 textColor: [255, 255, 255],
             },
-            bodyStyles: row => row.styles || {},
+            columnStyles: {
+                0: { cellWidth: 5 }, // Indicator column
+                1: { cellWidth: 15 }, // Position column
+            },
         });
     
         // Save the PDF
@@ -631,6 +657,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     document.getElementById("exportPDFButton").addEventListener("click", exportToPDF);
+    
     
 
 
