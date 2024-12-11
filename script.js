@@ -321,42 +321,56 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    function updateTeamStats(team, opponent, goalsFor, goalsAgainst, date) {
-        // Ensure the team exists in the teams object
-        if (!teams[team]) {
-            console.error(`Team ${team} is not defined.`);
+    function updateTeamStats(team1, team2, goalsFor, goalsAgainst, date) {
+        // Ensure team1 exists in the teams object
+        if (!teams[team1]) {
+            console.error(`Team ${team1} is not defined.`);
             return;
         }
     
-        // Ensure the opponent exists in the teams object
-        if (!teams[opponent]) {
-            console.error(`Opponent ${opponent} is not defined.`);
+        // Ensure team2 exists in the teams object
+        if (!teams[team2]) {
+            console.error(`Opponent ${team2} is not defined.`);
             return;
         }
     
-        teams[team].played += 1;
-        teams[team].goalsFor += goalsFor;
-        teams[team].goalsAgainst += goalsAgainst;
+        // Update team1 stats
+        teams[team1].played += 1;
+        teams[team1].goalsFor += goalsFor;
+        teams[team1].goalsAgainst += goalsAgainst;
     
-        const isAwayGame = (teams[team].played + teams[opponent].played) % 2 === 0;
+        // Update team2 stats
+        teams[team2].played += 1;
+        teams[team2].goalsFor += goalsAgainst; // team2's goalsFor is team1's goalsAgainst
+        teams[team2].goalsAgainst += goalsFor; // team2's goalsAgainst is team1's goalsFor
+    
+        const isAwayGame = (teams[team1].played + teams[team2].played) % 2 === 0;
     
         if (goalsFor > goalsAgainst) {
-            teams[team].won += 1;
-            teams[team].points += 3;
+            teams[team1].won += 1;
+            teams[team1].points += 3;
             if (isAwayGame) {
-                teams[team].awayWins += 1;
+                teams[team1].awayWins += 1;
             }
         } else if (goalsFor === goalsAgainst) {
-            teams[team].drawn += 1;
-            teams[team].points += 1;
+            teams[team1].drawn += 1;
+            teams[team1].points += 1;
+            teams[team2].drawn += 1;
+            teams[team2].points += 1;
         } else {
-            teams[team].lost += 1;
+            teams[team2].won += 1;
+            teams[team2].points += 3;
+            if (isAwayGame) {
+                teams[team2].awayWins += 1;
+            }
         }
     
         if (isAwayGame) {
-            teams[team].awayGoals += goalsFor;
+            teams[team1].awayGoals += goalsFor;
+            teams[team2].awayGoals += goalsAgainst;
         }
     }
+    
 
     function updatePointsTable() {
         pointsTable.innerHTML = "";
