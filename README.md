@@ -37,18 +37,15 @@ Welcome to the UEFA Europa League Predictor! This web application allows you to 
 
 ## Tiebreakers
 
-The points table is sorted using the following Group Stage Tiebreakers:
-
-1. Points earned in head-to-head matches among tied teams.
-2. Goal difference in head-to-head matches among tied teams.
-3. Goals scored in head-to-head matches among tied teams.
-4. If teams remain tied after applying the head-to-head criteria, apply:
-   - Overall goal difference in all group matches.
-   - Overall goals scored in all group matches.
-
+The points table is sorted using the following League Phase Tiebreakers:
+1. Goal difference
+2. Goals scored
+3. Away goals scored
+4. Wins
+5. Away wins
 ## Disclaimer
 
-The results are updated through the current league stage matchday 5.
+The results are updated through the current league stage matchday.
 
 ## Credits
 
