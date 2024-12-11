@@ -244,6 +244,11 @@ document.addEventListener("DOMContentLoaded", function() {
         matchdays[fixture.matchday].push(fixture);
     });
 
+    fixtures.forEach(fixture => {
+        updateTeamStats(fixture.team1, fixture.team2, fixture.score1, fixture.score2, fixture.date);
+    });
+    
+
     Object.keys(matchdays).forEach(matchday => {
         const dayDiv = document.createElement("div");
         dayDiv.className = "matchday";
