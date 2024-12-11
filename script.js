@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         'FC Dynamo Kyiv (UKR)',
         'IF Elfsborg (SWE)',
         'Fotbal Club FCSB (ROU)',
-        'Fenerbahçe SK (TUR)',
+        'Fenerbahce SK (TUR)',
         'Ferencvárosi TC (HUN)',
         'Eintracht Frankfurt (GER)',
         'Galatasaray AS (TUR)',
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { matchday: 1, date: "2024-09-25", team1: "RSC Anderlecht (BEL)", team2: "Ferencvárosi TC (HUN)", score1: 2, score2: 1 },
 
         // Matchday 1 - Thursday 26 September 2024
-        { matchday: 1, date: "2024-09-26", team1: "Fenerbahçe SK (TUR)", team2: "R. Union Saint-Gilloise (BEL)", score1: 2, score2: 1 },
+        { matchday: 1, date: "2024-09-26", team1: "Fenerbahce SK (TUR)", team2: "R. Union Saint-Gilloise (BEL)", score1: 2, score2: 1 },
         { matchday: 1, date: "2024-09-26", team1: "Malmö FF (SWE)", team2: "Rangers FC (SCO)", score1: 0, score2: 2 },
         { matchday: 1, date: "2024-09-26", team1: "AS Roma (ITA)", team2: "Athletic Club (ESP)", score1: 1, score2: 1 },
         { matchday: 1, date: "2024-09-26", team1: "AFC Ajax (NED)", team2: "Besiktas JK (TUR)", score1: 4, score2: 0 },
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { matchday: 2, date: "2024-10-03", team1: "FC Viktori Plzen (CZE)", team2: "PFC Ludogorets 1945 (BUL)", score1: 0, score2: 0 },
         { matchday: 2, date: "2024-10-03", team1: "R. Union Saint-Gilloise (BEL)", team2: "FK Bodø/Glimt (NOR)", score1: 0, score2: 0 },
         { matchday: 2, date: "2024-10-03", team1: "Athletic Club (ESP)", team2: "AZ Alkmaar (NED)", score1: 2, score2: 0 },
-        { matchday: 2, date: "2024-10-03", team1: "FC Twente (NED)", team2: "Fenerbahçe SK (TUR)", score1: 1, score2: 1 },
+        { matchday: 2, date: "2024-10-03", team1: "FC Twente (NED)", team2: "Fenerbahce SK (TUR)", score1: 1, score2: 1 },
         { matchday: 2, date: "2024-10-03", team1: "Besiktas JK (TUR)", team2: "Eintracht Frankfurt (GER)", score1: 1, score2: 3 },
         { matchday: 2, date: "2024-10-03", team1: "IF Elfsborg (SWE)", team2: "AS Roma (ITA)", score1: 1, score2: 0 },
     
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { matchday: 3, date: "2024-10-24", team1: "Rangers FC (SCO)", team2: "Fotbal Club FCSB (ROU)", score1: 4, score2: 0 },
         { matchday: 3, date: "2024-10-24", team1: "Tottenham Hotspur (ENG)", team2: "AZ Alkmaar (NED)", score1: 1, score2: 0 },
         { matchday: 3, date: "2024-10-24", team1: "Olympique Lyonnais (FRA)", team2: "Besiktas JK (TUR)", score1: 0, score2: 1 },
-        { matchday: 3, date: "2024-10-24", team1: "Fenerbahçe SK (TUR)", team2: "Manchester United (ENG)", score1: 1, score2: 1 },
+        { matchday: 3, date: "2024-10-24", team1: "Fenerbahce SK (TUR)", team2: "Manchester United (ENG)", score1: 1, score2: 1 },
         { matchday: 3, date: "2024-10-24", team1: "Malmö FF (SWE)", team2: "Olympiacos FC (GRE)", score1: 0, score2: 1 },
         { matchday: 3, date: "2024-10-24", team1: "Athletic Club (ESP)", team2: "SK Slavia Praha (CZE)", score1: 1, score2: 0 },
         { matchday: 3, date: "2024-10-24", team1: "RSC Anderlecht (BEL)", team2: "PFC Ludogorets 1945 (BUL)", score1: 2, score2: 0 },
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { matchday: 4, date: "2024-11-07", team1: "Manchester United (ENG)", team2: "PAOK FC (GRE)", score1: 2, score2: 0 },
         { matchday: 4, date: "2024-11-07", team1: "AFC Ajax (NED)", team2: "Maccabi Tel-Aviv FC (ISR)", score1: 5, score2: 0 },
         { matchday: 4, date: "2024-11-07", team1: "S.S. Lazio (ITA)", team2: "FC Porto (POR)", score1: 2, score2: 1 },
-        { matchday: 4, date: "2024-11-07", team1: "AZ Alkmaar (NED)", team2: "Fenerbahçe SK (TUR)", score1: 3, score2: 1 },
+        { matchday: 4, date: "2024-11-07", team1: "AZ Alkmaar (NED)", team2: "Fenerbahce SK (TUR)", score1: 3, score2: 1 },
         { matchday: 4, date: "2024-11-07", team1: "FC Viktori Plzen (CZE)", team2: "Real Sociedad de Fútbol (ESP)", score1: 2, score2: 1 },
         { matchday: 4, date: "2024-11-07", team1: "FC Dynamo Kyiv (UKR)", team2: "Ferencvárosi TC (HUN)", score1: 0, score2: 4 },
         { matchday: 4, date: "2024-11-07", team1: "TSG 1899 Hoffenheim (GER)", team2: "Olympique Lyonnais (FRA)", score1: 2, score2: 2 },
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { matchday: 5, date: "2024-11-28", team1: "FC RFS (LVA)", team2: "PAOK FC (GRE)", score1: 0, score2: 2 },
         { matchday: 5, date: "2024-11-28", team1: "Manchester United (ENG)", team2: "FK Bodø/Glimt (NOR)", score1: 3, score2: 2 },
         { matchday: 5, date: "2024-11-28", team1: "Tottenham Hotspur (ENG)", team2: "AS Roma (ITA)", score1: 2, score2: 2 },
-        { matchday: 5, date: "2024-11-28", team1: "SK Slavia Praha (CZE)", team2: "Fenerbahçe SK (TUR)", score1: 1, score2: 2 },
+        { matchday: 5, date: "2024-11-28", team1: "SK Slavia Praha (CZE)", team2: "Fenerbahce SK (TUR)", score1: 1, score2: 2 },
         { matchday: 5, date: "2024-11-28", team1: "Real Sociedad de Fútbol (ESP)", team2: "AFC Ajax (NED)", score1: 2, score2: 0 },
         { matchday: 5, date: "2024-11-28", team1: "SC Braga (POR)", team2: "TSG 1899 Hoffenheim (GER)", score1: 3, score2: 0 },
         { matchday: 5, date: "2024-11-28", team1: "Ferencvárosi TC (HUN)", team2: "Malmö FF (SWE)", score1: 4, score2: 1 },
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { matchday: 5, date: "2024-11-28", team1: "Fotbal Club FCSB (ROU)", team2: "Olympiacos FC (GRE)", score1: 0, score2: 0 },
     
         // Matchday 6 Wednesday 11 December 2024
-        { matchday: 6, date: "2024-12-11", team1: "Fenerbahçe SK", team2: "Athletic Club", score1: 0, score2: 2 },
+        { matchday: 6, date: "2024-12-11", team1: "Fenerbahce SK (TUR)", team2: "Athletic Club (ESP)", score1: 0, score2: 2 },
         
         // Thursday 12 December 2024
         { matchday: 6, date: "2024-12-12", team1: "AS Roma", team2: "SC Braga", score1: null, score2: null },
@@ -322,12 +322,24 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function updateTeamStats(team, opponent, goalsFor, goalsAgainst, date) {
+        // Ensure the team exists in the teams object
+        if (!teams[team]) {
+            console.error(`Team ${team} is not defined.`);
+            return;
+        }
+    
+        // Ensure the opponent exists in the teams object
+        if (!teams[opponent]) {
+            console.error(`Opponent ${opponent} is not defined.`);
+            return;
+        }
+    
         teams[team].played += 1;
         teams[team].goalsFor += goalsFor;
         teams[team].goalsAgainst += goalsAgainst;
-
+    
         const isAwayGame = (teams[team].played + teams[opponent].played) % 2 === 0;
-
+    
         if (goalsFor > goalsAgainst) {
             teams[team].won += 1;
             teams[team].points += 3;
@@ -340,7 +352,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             teams[team].lost += 1;
         }
-
+    
         if (isAwayGame) {
             teams[team].awayGoals += goalsFor;
         }
