@@ -45,8 +45,6 @@ The points table is sorted using the following Group Stage Tiebreakers:
 4. If teams remain tied after applying the head-to-head criteria, apply:
    - Overall goal difference in all group matches.
    - Overall goals scored in all group matches.
-5. Disciplinary points (yellow and red cards).
-6. UEFA club coefficient ranking.
 
 ## Disclaimer
 
