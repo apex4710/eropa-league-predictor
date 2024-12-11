@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { matchday: 5, date: "2024-11-28", team1: "Fotbal Club FCSB (ROU)", team2: "Olympiacos FC (GRE)", score1: 0, score2: 0 },
     
         // Matchday 6 Wednesday 11 December 2024
-        { matchday: 6, date: "2024-12-11", team1: "Fenerbahçe SK", team2: "Athletic Club", score1: null, score2: null },
+        { matchday: 6, date: "2024-12-11", team1: "Fenerbahçe SK", team2: "Athletic Club", score1: 0, score2: 2 },
         
         // Thursday 12 December 2024
         { matchday: 6, date: "2024-12-12", team1: "AS Roma", team2: "SC Braga", score1: null, score2: null },
