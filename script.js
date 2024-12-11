@@ -230,217 +230,181 @@ document.addEventListener("DOMContentLoaded", function() {
     ];   
       
       
-      
-
-
-      
-
     const matchdays = {};
 
+// Group fixtures by matchday
+fixtures.forEach(fixture => {
+    if (!matchdays[fixture.matchday]) {
+        matchdays[fixture.matchday] = [];
+    }
+    matchdays[fixture.matchday].push(fixture);
+});
+
+// Populate matchday UI
+Object.keys(matchdays).forEach(matchday => {
+    const dayDiv = document.createElement("div");
+    dayDiv.className = "matchday";
+    const button = document.createElement("button");
+    button.innerText = `Matchday ${matchday}`;
+    button.className = 'matchday-button';
+
+    const fixtureContainer = document.createElement("div");
+    fixtureContainer.style.display = 'none';
+
+    button.addEventListener("click", function () {
+        fixtureContainer.style.display = fixtureContainer.style.display === 'none' ? 'block' : 'none';
+    });
+
+    dayDiv.appendChild(button);
+
+    matchdays[matchday].forEach(fixture => {
+        createFixture(fixture.team1, fixture.team2, fixture.date, fixture.score1, fixture.score2, fixtureContainer);
+    });
+
+    dayDiv.appendChild(fixtureContainer);
+    fixturesDiv.appendChild(dayDiv);
+});
+
+// Create a fixture UI element
+function createFixture(team1, team2, date, score1, score2, parentDiv) {
+    const fixture = document.createElement("div");
+    fixture.className = "fixture fade-in";
+
+    fixture.innerHTML = `
+        <div class="fixture-date">${date}</div>
+        <div class="team-name">${team1}</div>
+        <div class="score-inputs">
+            <input type="number" min="0" class="team1-score" data-team="${team1}" value="${score1 !== null ? score1 : ''}">
+            -
+            <input type="number" min="0" class="team2-score" data-team="${team2}" value="${score2 !== null ? score2 : ''}">
+        </div>
+        <div class="team-name">${team2}</div>
+    `;
+
+    parentDiv.appendChild(fixture);
+}
+
+// Reset all team stats
+function resetTeams() {
+    teamNames.forEach(team => {
+        teams[team] = {
+            played: 0,
+            won: 0,
+            drawn: 0,
+            lost: 0,
+            goalsFor: 0,
+            goalsAgainst: 0,
+            awayGoals: 0,
+            awayWins: 0,
+            points: 0
+        };
+    });
+}
+
+// Recalculate all team stats from fixtures
+function recountStats() {
+    resetTeams();
     fixtures.forEach(fixture => {
-        if (!matchdays[fixture.matchday]) {
-            matchdays[fixture.matchday] = [];
+        if (fixture.score1 !== null && fixture.score2 !== null) {
+            updateTeamStats(fixture.team1, fixture.team2, fixture.score1, fixture.score2);
         }
-        matchdays[fixture.matchday].push(fixture);
     });
+}
 
-    fixtures.forEach(fixture => {
-        updateTeamStats(fixture.team1, fixture.team2, fixture.score1, fixture.score2, fixture.date);
-    });
-    
-
-    Object.keys(matchdays).forEach(matchday => {
-        const dayDiv = document.createElement("div");
-        dayDiv.className = "matchday";
-        const button = document.createElement("button");
-        button.innerText = `Matchday ${matchday}`;
-        button.className = 'matchday-button';
-
-        const fixtureContainer = document.createElement("div");
-        fixtureContainer.style.display = 'none';
-
-        button.addEventListener("click", function() {
-            fixtureContainer.style.display = fixtureContainer.style.display === 'none' ? 'block' : 'none';
-        });
-
-        dayDiv.appendChild(button);
-
-        matchdays[matchday].forEach(fixture => {
-            createFixture(fixture.team1, fixture.team2, fixture.date, fixture.score1, fixture.score2, fixtureContainer);
-        });
-
-        dayDiv.appendChild(fixtureContainer);
-        fixturesDiv.appendChild(dayDiv);
-    });
-
-    function createFixture(team1, team2, date, score1, score2, parentDiv) {
-        const fixture = document.createElement("div");
-        fixture.className = "fixture fade-in";  // Added fade-in class
-    
-        fixture.innerHTML = `
-            <div class="fixture-date">${date}</div>
-            <div class="team-name">${team1}</div>
-            <div class="score-inputs">
-                <input type="number" min="0" class="team1-score" data-team="${team1}" value="${score1 !== null ? score1 : ''}">
-                -
-                <input type="number" min="0" class="team2-score" data-team="${team2}" value="${score2 !== null ? score2 : ''}">
-            </div>
-            <div class="team-name">${team2}</div>
-        `;
-    
-        parentDiv.appendChild(fixture);
+// Update stats for a single fixture
+function updateTeamStats(team1, team2, goalsFor, goalsAgainst) {
+    // Ensure both teams exist in the teams object
+    if (!teams[team1] || !teams[team2]) {
+        console.error(`One or both teams (${team1}, ${team2}) are not defined.`);
+        return;
     }
 
-    function removeFixture(element) {
-        element.classList.add("fade-out");
-        setTimeout(() => {
-            element.remove();
-        }, 500); // Match the duration of the fadeOut animation
-    }
-    
-    
+    // Increment played count for both teams
+    teams[team1].played += 1;
+    teams[team2].played += 1;
 
-    function resetTeams() {
-        teamNames.forEach(team => {
-            teams[team] = {
-                played: 0,
-                won: 0,
-                drawn: 0,
-                lost: 0,
-                goalsFor: 0,
-                goalsAgainst: 0,
-                awayGoals: 0,
-                awayWins: 0,
-                points: 0
-            };
-        });
-    }
+    // Update goals for and against
+    teams[team1].goalsFor += goalsFor;
+    teams[team1].goalsAgainst += goalsAgainst;
+    teams[team2].goalsFor += goalsAgainst;
+    teams[team2].goalsAgainst += goalsFor;
 
-    function recountStats() {
-        resetTeams();
+    // Determine the outcome and update stats accordingly
+    if (goalsFor > goalsAgainst) {
+        // team1 wins
+        teams[team1].won += 1;
+        teams[team1].points += 3;
+        teams[team2].lost += 1;
+    } else if (goalsFor === goalsAgainst) {
+        // Draw
+        teams[team1].drawn += 1;
+        teams[team2].drawn += 1;
+        teams[team1].points += 1;
+        teams[team2].points += 1;
+    } else {
+        // team2 wins
+        teams[team2].won += 1;
+        teams[team2].points += 3;
+        teams[team1].lost += 1;
+    }
+}
+
+
+// Update the points table
+function updatePointsTable() {
+    pointsTable.innerHTML = "";
+    const sortedTeams = Object.entries(teams).sort((a, b) =>
+        b[1].points - a[1].points || // Points
+        (b[1].goalsFor - b[1].goalsAgainst) - (a[1].goalsFor - a[1].goalsAgainst) || // Goal difference
+        b[1].goalsFor - a[1].goalsFor || // Goals scored
+        b[1].awayGoals - a[1].awayGoals || // Away goals scored
+        b[1].won - a[1].won || // Wins
+        b[1].awayWins - a[1].awayWins // Away wins
+    );
+
+    sortedTeams.forEach((team, index) => {
+        const row = pointsTable.insertRow();
+        row.className = index < 8 ? 'top8 table-row-update' : index < 24 ? 'mid8 table-row-update' : 'bottom4 table-row-update';
+
+        row.insertCell(0).innerText = index + 1;
+        row.insertCell(1).innerText = team[0];
+        row.insertCell(2).innerText = team[1].played;
+        row.insertCell(3).innerText = team[1].won;
+        row.insertCell(4).innerText = team[1].drawn;
+        row.insertCell(5).innerText = team[1].lost;
+        row.insertCell(6).innerText = team[1].goalsFor;
+        row.insertCell(7).innerText = team[1].goalsAgainst;
+        row.insertCell(8).innerText = team[1].goalsFor - team[1].goalsAgainst;
+        row.insertCell(9).innerText = team[1].points;
+    });
+
+    setTimeout(() => {
+        document.querySelectorAll('.table-row-update').forEach(row => row.classList.remove('table-row-update'));
+    }, 1000);
+}
+
+// Listen for score updates
+document.addEventListener("change", function (event) {
+    if (event.target.classList.contains("team1-score") || event.target.classList.contains("team2-score")) {
+        const fixtureDiv = event.target.closest(".fixture");
+        const team1 = fixtureDiv.querySelector(".team1-score").dataset.team;
+        const team2 = fixtureDiv.querySelector(".team2-score").dataset.team;
+        const score1 = parseInt(fixtureDiv.querySelector(".team1-score").value) || null;
+        const score2 = parseInt(fixtureDiv.querySelector(".team2-score").value) || null;
+
+        // Update fixture scores
         fixtures.forEach(fixture => {
-            if (fixture.score1 !== null && fixture.score2 !== null) {
-                updateTeamStats(fixture.team1, fixture.team2, fixture.score1, fixture.score2, fixture.date);
-                updateTeamStats(fixture.team2, fixture.team1, fixture.score2, fixture.score1, fixture.date);
+            if (fixture.team1 === team1 && fixture.team2 === team2) {
+                fixture.score1 = score1;
+                fixture.score2 = score2;
             }
         });
+
+        recountStats();
+        updatePointsTable();
     }
+});
 
-    function updateTeamStats(team1, team2, goalsFor, goalsAgainst, date) {
-        // Ensure team1 exists in the teams object
-        if (!teams[team1]) {
-            console.error(`Team ${team1} is not defined.`);
-            return;
-        }
-    
-        // Ensure team2 exists in the teams object
-        if (!teams[team2]) {
-            console.error(`Opponent ${team2} is not defined.`);
-            return;
-        }
-    
-        // Update common stats
-        teams[team1].played += 1;
-        teams[team2].played += 1;
-    
-        teams[team1].goalsFor += goalsFor;
-        teams[team1].goalsAgainst += goalsAgainst;
-    
-        teams[team2].goalsFor += goalsAgainst;
-        teams[team2].goalsAgainst += goalsFor;
-    
-        const isAwayGame = (teams[team1].played + teams[team2].played) % 2 === 0;
-    
-        if (goalsFor > goalsAgainst) {
-            // team1 wins
-            teams[team1].won += 1;
-            teams[team1].points += 3;
-            teams[team2].lost += 1;
-            if (isAwayGame) {
-                teams[team1].awayWins += 1;
-            }
-        } else if (goalsFor === goalsAgainst) {
-            // Draw
-            teams[team1].drawn += 1;
-            teams[team2].drawn += 1;
-            teams[team1].points += 1;
-            teams[team2].points += 1;
-        } else {
-            // team2 wins
-            teams[team2].won += 1;
-            teams[team2].points += 3;
-            teams[team1].lost += 1;
-            if (isAwayGame) {
-                teams[team2].awayWins += 1;
-            }
-        }
-    
-        if (isAwayGame) {
-            teams[team1].awayGoals += goalsFor;
-            teams[team2].awayGoals += goalsAgainst;
-        }
-    }
-    
-    
-
-    function updatePointsTable() {
-        pointsTable.innerHTML = "";
-        const sortedTeams = Object.entries(teams).sort((a, b) => 
-            b[1].points - a[1].points || // Points
-            (b[1].goalsFor - b[1].goalsAgainst) - (a[1].goalsFor - a[1].goalsAgainst) || // Goal difference
-            b[1].goalsFor - a[1].goalsFor || // Goals scored
-            b[1].awayGoals - a[1].awayGoals || // Away goals scored
-            b[1].won - a[1].won || // Wins
-            b[1].awayWins - a[1].awayWins // Away wins
-        );
-    
-        sortedTeams.forEach((team, index) => {
-            const row = pointsTable.insertRow();
-            row.className = index < 8 ? 'top8 table-row-update' : index < 24 ? 'mid8 table-row-update' : 'bottom4 table-row-update'; // Apply classes based on rank
-    
-            row.insertCell(0).innerText = index + 1;
-            row.insertCell(1).innerText = team[0];
-            row.insertCell(2).innerText = team[1].played;
-            row.insertCell(3).innerText = team[1].won;
-            row.insertCell(4).innerText = team[1].drawn;
-            row.insertCell(5).innerText = team[1].lost;
-            row.insertCell(6).innerText = team[1].goalsFor;
-            row.insertCell(7).innerText = team[1].goalsAgainst;
-            row.insertCell(8).innerText = team[1].goalsFor - team[1].goalsAgainst;
-            row.insertCell(9).innerText = team[1].points;
-        });
-    
-        // Remove the animation class after the animation ends
-        setTimeout(() => {
-            document.querySelectorAll('.table-row-update').forEach(row => {
-                row.classList.remove('table-row-update');
-            });
-        }, 1000); // Animation duration time
-    }
-    
-    
-
-    document.addEventListener("change", function(event) {
-        if (event.target.classList.contains("team1-score") || event.target.classList.contains("team2-score")) {
-            const fixtureDiv = event.target.closest(".fixture");
-            const team1 = fixtureDiv.querySelector(".team1-score").dataset.team;
-            const team2 = fixtureDiv.querySelector(".team2-score").dataset.team;
-            const score1 = parseInt(fixtureDiv.querySelector(".team1-score").value) || 0;
-            const score2 = parseInt(fixtureDiv.querySelector(".team2-score").value) || 0;
-
-            // Update fixture scores
-            fixtures.forEach(fixture => {
-                if (fixture.team1 === team1 && fixture.team2 === team2) {
-                    fixture.score1 = score1;
-                    fixture.score2 = score2;
-                }
-            });
-
-            // Recount stats and update points table
-            recountStats();
-            updatePointsTable();
-        }
-    });
 
 
 
