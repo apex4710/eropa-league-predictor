@@ -334,32 +334,37 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
     
-        // Update team1 stats
+        // Update common stats
         teams[team1].played += 1;
+        teams[team2].played += 1;
+    
         teams[team1].goalsFor += goalsFor;
         teams[team1].goalsAgainst += goalsAgainst;
     
-        // Update team2 stats
-        teams[team2].played += 1;
-        teams[team2].goalsFor += goalsAgainst; // team2's goalsFor is team1's goalsAgainst
-        teams[team2].goalsAgainst += goalsFor; // team2's goalsAgainst is team1's goalsFor
+        teams[team2].goalsFor += goalsAgainst;
+        teams[team2].goalsAgainst += goalsFor;
     
         const isAwayGame = (teams[team1].played + teams[team2].played) % 2 === 0;
     
         if (goalsFor > goalsAgainst) {
+            // team1 wins
             teams[team1].won += 1;
             teams[team1].points += 3;
+            teams[team2].lost += 1;
             if (isAwayGame) {
                 teams[team1].awayWins += 1;
             }
         } else if (goalsFor === goalsAgainst) {
+            // Draw
             teams[team1].drawn += 1;
-            teams[team1].points += 1;
             teams[team2].drawn += 1;
+            teams[team1].points += 1;
             teams[team2].points += 1;
         } else {
+            // team2 wins
             teams[team2].won += 1;
             teams[team2].points += 3;
+            teams[team1].lost += 1;
             if (isAwayGame) {
                 teams[team2].awayWins += 1;
             }
@@ -370,6 +375,7 @@ document.addEventListener("DOMContentLoaded", function() {
             teams[team2].awayGoals += goalsAgainst;
         }
     }
+    
     
 
     function updatePointsTable() {
