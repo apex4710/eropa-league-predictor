@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { matchday: 6, date: "2024-12-12", team1: "Olympique Lyonnais (FRA)", team2: "Eintracht Frankfurt (GER)", score1: 3, score2: 2 },
         { matchday: 6, date: "2024-12-12", team1: "Maccabi Tel-Aviv FC (ISR)", team2: "FC RFS (LVA)", score1: 2, score2: 1 },
         { matchday: 6, date: "2024-12-12", team1: "FK Bodo/Glimt (NOR)", team2: "Besiktas JK (TUR)", score1: 2, score2: 1 },
-        { matchday: 6, date: "2024-12-12", team1: "IF Elfsborg", team2: "Qarabg FK (AZE)", score1: 1, score2: 0 },
+        { matchday: 6, date: "2024-12-12", team1: "IF Elfsborg (SWE)", team2: "Qarabg FK (AZE)", score1: 1, score2: 0 },
 
         // Tuesday 21 January 2025
         { matchday: 7, date: "2025-01-21", team1: "Galatasaray AS (TUR)", team2: "FC Dynamo Kyiv (UKR)", score1: null, score2: null },
@@ -206,13 +206,13 @@ document.addEventListener("DOMContentLoaded", function() {
         { matchday: 7, date: "2025-01-23", team1: "R. Union Saint-Gilloise (BEL)", team2: "SC Braga (POR)", score1: null, score2: null },
         { matchday: 7, date: "2025-01-23", team1: "PFC Ludogorets 1945 (BUL)", team2: "FC Midtjylland (DEN)", score1: null, score2: null },
         { matchday: 7, date: "2025-01-23", team1: "FC RFS (LVA)", team2: "AFC Ajax (NED)", score1: null, score2: null },
-        { matchday: 7, date: "2025-01-23", team1: "IF Elfsborg", team2: "OGC Nice (FRA)", score1: null, score2: null },
+        { matchday: 7, date: "2025-01-23", team1: "IF Elfsborg (SWE)", team2: "OGC Nice (FRA)", score1: null, score2: null },
     
         // Thursday 30 January 2025
         { matchday: 8, date: "2025-01-30", team1: "AS Roma (ITA)", team2: "Eintracht Frankfurt (GER)", score1: null, score2: null },
         { matchday: 8, date: "2025-01-30", team1: "AFC Ajax (NED)", team2: "Galatasaray AS (TUR)", score1: null, score2: null },
         { matchday: 8, date: "2025-01-30", team1: "Rangers FC (SCO)", team2: "R. Union Saint-Gilloise (BEL)", score1: null, score2: null },
-        { matchday: 8, date: "2025-01-30", team1: "Tottenham Hotspur (ENG)", team2: "IF Elfsborg", score1: null, score2: null },
+        { matchday: 8, date: "2025-01-30", team1: "Tottenham Hotspur (ENG)", team2: "IF Elfsborg (SWE)", score1: null, score2: null },
         { matchday: 8, date: "2025-01-30", team1: "SK Slavia Praha (CZE)", team2: "Malmo FF (SWE)", score1: null, score2: null },
         { matchday: 8, date: "2025-01-30", team1: "Real Sociedad de Futbol (ESP)", team2: "PAOK FC (GRE)", score1: null, score2: null },
         { matchday: 8, date: "2025-01-30", team1: "SC Braga (POR)", team2: "S.S. Lazio (ITA)", score1: null, score2: null },
