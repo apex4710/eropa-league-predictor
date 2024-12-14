@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { matchday: 6, date: "2024-12-12", team1: "Malmo FF (SWE)", team2: "Galatasaray AS (TUR)", score1: 2, score2: 2 },
         { matchday: 6, date: "2024-12-12", team1: "TSG 1899 Hoffenheim (GER)", team2: "Fotbal Club FCSB (ROU)", score1: 0, score2: 0 },
         { matchday: 6, date: "2024-12-12", team1: "FC Porto (POR)", team2: "FC Midtjylland (DEN)", score1: 2, score2: 0 },
-        { matchday: 6, date: "2024-12-12", team1: "AFC Ajax (NED)", team2: "S.S. Lazio (ITA)", score1: n1, score2: 3 },
+        { matchday: 6, date: "2024-12-12", team1: "AFC Ajax (NED)", team2: "S.S. Lazio (ITA)", score1: 1, score2: 3 },
         { matchday: 6, date: "2024-12-12", team1: "Rangers FC (SCO)", team2: "Tottenham Hotspur (ENG)", score1: 1, score2: 1 },
         { matchday: 6, date: "2024-12-12", team1: "SK Slavia Praha (CZE)", team2: "RSC Anderlecht (BEL)", score1: 1, score2: 2 },
         { matchday: 6, date: "2024-12-12", team1: "Real Sociedad de Futbol (ESP)", team2: "FC Dynamo Kyiv (UKR)", score1: 3, score2: 0 },
