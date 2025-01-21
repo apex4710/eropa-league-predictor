@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { matchday: 6, date: "2024-12-12", team1: "IF Elfsborg (SWE)", team2: "Qarabg FK (AZE)", score1: 1, score2: 0 },
 
         // Tuesday 21 January 2025
-        { matchday: 7, date: "2025-01-21", team1: "Galatasaray AS (TUR)", team2: "FC Dynamo Kyiv (UKR)", score1: null, score2: null },
+        { matchday: 7, date: "2025-01-21", team1: "Galatasaray AS (TUR)", team2: "FC Dynamo Kyiv (UKR)", score1: 3, score2: 3 },
         
         // Wednesday 22 January 2025
         { matchday: 7, date: "2025-01-22", team1: "Besiktas JK (TUR)", team2: "Athletic Club (ESP)", score1: null, score2: null },
