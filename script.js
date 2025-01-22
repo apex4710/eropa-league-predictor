@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { matchday: 7, date: "2025-01-21", team1: "Galatasaray AS (TUR)", team2: "FC Dynamo Kyiv (UKR)", score1: 3, score2: 3 },
         
         // Wednesday 22 January 2025
-        { matchday: 7, date: "2025-01-22", team1: "Besiktas JK (TUR)", team2: "Athletic Club (ESP)", score1: null, score2: null },
+        { matchday: 7, date: "2025-01-22", team1: "Besiktas JK (TUR)", team2: "Athletic Club (ESP)", score1: 4, score2: 1 },
         
         // Thursday 23 January 2025
         { matchday: 7, date: "2025-01-23", team1: "FC Porto (POR)", team2: "Olympiacos FC (GRE)", score1: null, score2: null },
